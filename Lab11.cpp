@@ -30,3 +30,28 @@ int main()
     return 0;
 }
 
+int readFile(double arr[], int size)
+{
+    string filename;
+    ifstream inputFile;
+    int count = 0;
+
+    cout << "Enter file name: ";
+    cin >> filename;
+
+    inputFile.open(filename);
+
+    if (!inputFile)
+    {
+        cout << "Error opening file.\n";
+        return 0;
+    }
+
+    while (count < size && inputFile >> arr[count])
+    {
+        count++;
+    }
+
+    inputFile.close();
+    return count;
+}
