@@ -11,10 +11,13 @@ const int SIZE = 100;
 int readFile(double arr[], int size);
 void analyzeArray(double arr[], int count);
 
+//This program reads the contents of a file and use the information of a it to look out various digits
 int main()
 {
 	double number[SIZE];
 	int count;
+
+    cout << "This program reads the contents of a file and use the information of a it to look out various digits" << endl;
 
     count = readFile(number, SIZE);
 
@@ -30,6 +33,7 @@ int main()
     return 0;
 }
 
+//function
 int readFile(double arr[], int size)
 {
     string filename;
@@ -54,4 +58,43 @@ int readFile(double arr[], int size)
 
     inputFile.close();
     return count;
+}
+
+//function
+void analyzeArray(double arr[], int count)
+{
+    double min = arr[0];
+    double max = arr[0];
+    double sum = 0;
+
+    for (int i = 0; i < count; i++)
+    {
+        if (arr[i] < min)
+            min = arr[i];
+
+        if (arr[i] > max)
+            max = arr[i];
+
+        sum += arr[i];
+    }
+
+    double average = sum / count;
+
+    // Standard deviation
+    double variance = 0;
+    for (int i = 0; i < count; i++)
+    {
+        variance += pow(arr[i] - average, 2);
+    }
+
+    variance /= count;
+    double stdDev = sqrt(variance);
+
+    // Output
+    cout << "\nThe results are the following: \n";
+    cout << "Lowest: " << min << endl;
+    cout << "Highest: " << max << endl;
+    cout << "Total: " << sum << endl;
+    cout << "Average: " << average << endl;
+    cout << "Standard Deviation: " << stdDev << endl;
 }
